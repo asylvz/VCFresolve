@@ -7,6 +7,9 @@ VCFresolve aims to sequence resolve the VCF files...
 
 # Usage
     python vcf-resolve -g Reference_Genome -v VCF -a Repeat_Annotation -o Output
+   
+# Optionally you can sequence resolve only the precise calls, i.e., the calls that don't have IMPRECISE keyword
+    python vcf-resolve -g Reference_Genome -v VCF -a Repeat_Annotation -o Output --precise
 
 
 # Downloading the repeat annotation file
