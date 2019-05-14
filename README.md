@@ -1,6 +1,9 @@
 # VCFresolve
 
-VCFresolve aims to sequence resolve the VCF files
+VCFresolve aims to sequence resolve the VCF files...
+
+# Downloading VCFresolve
+	git clone https://github.com/asylvz/VCFresolve.git
 
 # Usage
     python vcf-resovlve -g Reference_Genome -v VCF -a Annotation -o Output
