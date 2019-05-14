@@ -1,62 +1,3 @@
-
-# coding: utf-8
-
-# In[2]:
-
-
-def readGenome(filename, chr_name):
-    genome =''
-    k = 0
-    chr_check = False
-    skip = False
-    chr_fq=''
-    with open(filename, 'r') as f:
-        for line in f:
-            if line[0] == '>':
-                chr_fq = line[1:].rstrip()
-            else:
-                if chr_fq == chr_name:
-                    genome += line.rstrip()
-    return genome
-
-
-# In[3]:
-
-
-def readVcf(filename):
-    vcf=[]
-    with open(filename, 'r') as f:
-        for line in f:
-            if line[0] != '#':
-                vcf.append(line)
-    return vcf
-
-
-# In[35]:
-
-
-def findMEISeq(filename, mei):
-    with open(filename, 'r') as f:
-        k = 0
-        for line in f:
-            if k>2:
-                a=line.split();
-                if a[8] == "C":
-                    continue
-                mei_annot = a[9]
-                if mei_annot == mei:
-                    chr_name = a[4]
-                    start = int(a[5])
-                    end = int(a[6])
-                    return start,end
-            else:
-                k +=1
-        return NULL
-
-
-# In[7]:
-
-
 import sys
 
 def findMEISeq(filename, mei, chr_name):
@@ -257,10 +198,6 @@ if __name__ == "__main__":
                     
             else:
                 vcf_new.write("%s"%line)
-                
-
-
-# In[8]:
 
 
 
