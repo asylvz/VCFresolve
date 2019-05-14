@@ -6,10 +6,10 @@ VCFresolve aims to sequence resolve the VCF files...
 	git clone https://github.com/asylvz/VCFresolve.git
 
 # Usage
-    python vcf-resovlve -g Reference_Genome -v VCF -a Annotation -o Output
+    python vcf-resolve -g Reference_Genome -v VCF -a Repeat_Annotation -o Output
 
 
-# Downloading the repeat annotations
+# Downloading the Repeat_Annotation
 
 Using UCSC sequence and annotations [download page](http://hgdownload.cse.ucsc.edu/downloads.html);
 
@@ -24,7 +24,7 @@ Extract the files into a folder and merge them into a single .out file:
 	cat */* >reps.out
 	
 
-# Downloading the reference genome
+# Downloading the Reference_Genome
 
 Using UCSC sequence and annotations [download page](http://hgdownload.cse.ucsc.edu/downloads.html);
 
