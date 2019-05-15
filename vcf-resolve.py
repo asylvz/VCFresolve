@@ -9,7 +9,7 @@ if __name__ == "__main__":
     #parser.add_argument("echo")
     parser.add_argument("-g","--genome", dest="genome_file",
                         help="The reference genome file in fasta format.")
-    parser.add_argument("-v","--vcf", dest="vcf_file",
+    parser.add_argument("-v","--vcf", dest="vcf_file", required = True,
                         help="The VCF file to resolve the sequences.")
     parser.add_argument("-a","--mei", dest="annot_file",
                         help="The Repeat Annotation files.")
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
 
-    print("The arguments given are: ")
+    #print("The arguments given are: ")
     #print("Genome is",args.genome_file)
     #print("VCF File is", args.vcf_file)
     #print("MEI Annotation file is", args.annot_file)
