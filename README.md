@@ -5,11 +5,13 @@ VCFresolve aims to sequence resolve the VCF files...
 # Downloading VCFresolve
 	git clone https://github.com/asylvz/VCFresolve.git
 
-# Usage
-    python vcf-resolve -g Reference_Genome -v VCF -a Repeat_Annotation -o Output
-   
+# Quick Start (To resolve the sequences of the SVs)
+    python vcf-resolve --resolve -g Reference_Genome -v VCF -a Repeat_Annotation -o Output
 # Optionally you can sequence resolve only the precise calls, i.e., the calls that don't have IMPRECISE keyword
     python vcf-resolve -g Reference_Genome -v VCF -a Repeat_Annotation -o Output --precise
+    
+# Running Mendelian Filter for trios
+    python vcf-resolve --mendelian -v VCF -o Output
 
 
 # Downloading the repeat annotation file
