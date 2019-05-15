@@ -34,7 +34,7 @@ if __name__ == "__main__":
         output = args.vcf_file+"_v2"
         vcf_new = open(output,"w")
     else:
-        output = args.vcf_file
+        output = args.output_file
         vcf_new = open(output,"w")
 
     if args.resolve:
