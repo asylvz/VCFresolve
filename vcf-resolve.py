@@ -9,7 +9,7 @@ if __name__ == "__main__":
     #parser.add_argument("echo")
     parser.add_argument("-g","--genome", dest="genome_file",
                         help="The reference genome file in fasta format.")
-    parser.add_argument("-v","--vcf", dest="vcf_file", required = True,
+    parser.add_argument("-v","--vcf", dest="vcf_file",
                         help="The VCF file to resolve the sequences.")
     parser.add_argument("-a","--mei", dest="annot_file",
                         help="The Repeat Annotation files.")
@@ -21,6 +21,9 @@ if __name__ == "__main__":
                         help="Used to find the sequences of the SVs.")
     parser.add_argument("--mendelian", action='store_true',
                         help="This option allows you to use mendelian filter for trios. With this option, only the VCF file (-v, --vcf) and output file (-o, --output) is needed as input.")
+    parser.add_argument("-f","--vcf-folder", dest="vcf_folder",
+                        help="The input VCF folder.")
+
     args = parser.parse_args()
 
 
@@ -29,13 +32,15 @@ if __name__ == "__main__":
     #print("VCF File is", args.vcf_file)
     #print("MEI Annotation file is", args.annot_file)
     #print("Output File is", args.output_file)7
+    vcf_new = ''
+    if args.vcf_folder is None:
+        if args.output_file is None:
+            output = args.vcf_file+"_v2"
+            vcf_new = open(output,"w")
+        else:
+            output = args.output_file
+            vcf_new = open(output,"w")
 
-    if args.output_file is None:
-        output = args.vcf_file+"_v2"
-        vcf_new = open(output,"w")
-    else:
-        output = args.output_file
-        vcf_new = open(output,"w")
 
     if args.resolve:
         if args.annot_file is None or args.genome_file is None:
@@ -43,7 +48,7 @@ if __name__ == "__main__":
         else:
             mei_annot_file = args.annot_file
             genome = args.genome_file
-            rslv.resolve(genome, args.vcf_file, vcf_new, mei_annot_file, args.precise)
+            rslv.resolve(genome, args.vcf_file, vcf_new, mei_annot_file, args.precise, args.vcf_folder)
 
     elif args.mendelian:
         print("Running mendelian filter (Make sure that your VCF has the required columns for the trio and son must be at the last column)")
