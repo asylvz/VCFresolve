@@ -36,3 +36,5 @@ def flt(vcf_file, output):
 
         if is_filtered == False:
             output.write("%s"%line)
+    print("Done...")
+    output.close()

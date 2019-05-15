@@ -46,5 +46,5 @@ if __name__ == "__main__":
             rslv.resolve(genome, args.vcf_file, vcf_new, mei_annot_file, args.precise)
 
     elif args.mendelian:
-        print("Running mendelian filter. Make sure that your VCF has the required columns for the trio and son must be at the last column")
+        print("Running mendelian filter (Make sure that your VCF has the required columns for the trio and son must be at the last column)")
         mf.flt(args.vcf_file, vcf_new)
