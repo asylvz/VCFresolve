@@ -22,7 +22,7 @@ def findMEISeq(filename, mei, chr_name):
         return -1,-1
 
 def reverseComplement(s):
-    complement = {'A':'T', 'T':'A', 'C':'G', 'G':'C'}
+    complement = {'A':'T', 'T':'A', 'C':'G', 'G':'C', 'N':'N'}
     t = ''
     for base in s:
         t = complement[base] + t
@@ -37,7 +37,9 @@ def readGenome(filename, chr_name):
     with open(filename, 'r') as f:
         for line in f:
             if line[0] == '>':
-                chr_fq = line[1:].rstrip()
+                #chr_fq = line[1:].rstrip()
+                tmp = line.split()
+                chr_fq = tmp[0][1:].rstrip()
             else:
                 if chr_fq == chr_name:
                     genome += line.rstrip()

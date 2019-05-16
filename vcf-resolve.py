@@ -23,6 +23,8 @@ if __name__ == "__main__":
                         help="This option allows you to use mendelian filter for trios. With this option, only the VCF file (-v, --vcf) and output file (-o, --output) is needed as input.")
     parser.add_argument("-f","--vcf-folder", dest="vcf_folder",
                         help="The input VCF folder.")
+    parser.add_argument("--verbose", action='store_true',
+                        help="Works in verbose mode.")
 
     args = parser.parse_args()
 
@@ -48,7 +50,7 @@ if __name__ == "__main__":
         else:
             mei_annot_file = args.annot_file
             genome = args.genome_file
-            rslv.resolve(genome, args.vcf_file, vcf_new, mei_annot_file, args.precise, args.vcf_folder)
+            rslv.resolve(genome, args.vcf_file, vcf_new, mei_annot_file, args.precise, args.vcf_folder, args.verbose)
 
     elif args.mendelian:
         print("Running mendelian filter (Make sure that your VCF has the required columns for the trio and son must be at the last column)")

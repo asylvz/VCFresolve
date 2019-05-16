@@ -1,7 +1,7 @@
 import os
 import utilities as util
 
-def resolve(genome, vcf_file, vcf_new, mei_annot_file, is_precise, vcf_folder):
+def resolve(genome, vcf_file, vcf_new, mei_annot_file, is_precise, vcf_folder, verbose):
 
     vcfs=[]
     if not vcf_folder is None and not vcf_folder[-1] == '/':
@@ -29,10 +29,9 @@ def resolve(genome, vcf_file, vcf_new, mei_annot_file, is_precise, vcf_folder):
             vcf_new = vcf_new = open(tmp[0]+"_resolved.vcf","w")
 
         vcf, comments = util.readVcf(vcfs[i])
-        chr_name_old = "1"
-        chr_change=False
-        fa = util.readGenome(genome,chr_name_old)
-
+        #chr_name_old = "1"
+        #fa = util.readGenome(genome,chr_name_old)
+        beginning = True
         for line in comments:
             vcf_new.write("%s"%line)
 
@@ -46,16 +45,22 @@ def resolve(genome, vcf_file, vcf_new, mei_annot_file, is_precise, vcf_folder):
                 meis.update({mei_annot:""})
 
         print("Running for",vcfs[i],"(",i+1,"of",file_count,")")
+
+        fa = ''
         for line in vcf:
             if ("IMPRECISE" in line) and is_precise:
                 vcf_new.write("%s"%line)
                 continue
 
+
             a = line.split()
             chr_name = a[0]
-            if chr_name != chr_name_old:
-                #print("Processing chromosome",chr_name)
-                chr_change = True
+            if beginning:
+                chr_name_old = chr_name
+            if beginning or chr_name != chr_name_old:
+                if verbose:
+                    print("Processing chromosome", chr_name)
+                beginning = False
                 chr_name_old = chr_name
                 del fa
                 fa = util.readGenome(genome,chr_name_old)
@@ -65,6 +70,7 @@ def resolve(genome, vcf_file, vcf_new, mei_annot_file, is_precise, vcf_folder):
             tmp2 = tmp[0].split('=')
             end = int(tmp2[1])
             sv = a[4]
+
             if end>=start:
                 if "DEL" in sv:
                     for i in range(len(a)):
@@ -80,7 +86,7 @@ def resolve(genome, vcf_file, vcf_new, mei_annot_file, is_precise, vcf_folder):
                         if i == 3:
                             vcf_new.write("%s\t"%fa[start:end])
                         elif i == 4:
-                            vcf_new.write("%s\t"%reverseComplement(fa[start:end]))
+                            vcf_new.write("%s\t"%util.reverseComplement(fa[start:end]))
                         else:
                             vcf_new.write("%s\t"%a[i])
                     vcf_new.write("\n")
