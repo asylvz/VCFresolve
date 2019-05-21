@@ -2,19 +2,19 @@
 
 VCFresolve aims to sequence resolve the VCF files...
 
-# Downloading VCFresolve
+## Downloading VCFresolve
 	git clone https://github.com/asylvz/VCFresolve.git
 
-# Quick Start (To resolve the sequences of the SVs)
+## Quick Start (To resolve the sequences of the SVs)
     python vcf-resolve --resolve -g Reference_Genome -v VCF -a Repeat_Annotation -o Output
-# Optionally you can sequence resolve only the precise calls, i.e., the calls that don't have IMPRECISE keyword
+#### Optionally you can sequence resolve only the precise calls, i.e., the calls that don't have IMPRECISE keyword
     python vcf-resolve --resolve -g Reference_Genome -v VCF -a Repeat_Annotation -o Output --precise
     
-# Running Mendelian Filter for trios
+## Running Mendelian Filter for trios
     python vcf-resolve --mendelian -v VCF -o Output
 
 
-# Downloading the repeat annotation file
+## Downloading the repeat annotation file
 
 Using UCSC sequence and annotations [download page](http://hgdownload.cse.ucsc.edu/downloads.html);
 
@@ -29,7 +29,7 @@ Extract the files into a folder and merge them into a single .out file:
 	cat */* >reps.out
 	
 
-# Downloading the reference genome file
+## Downloading the reference genome file
 
 Using UCSC sequence and annotations [download page](http://hgdownload.cse.ucsc.edu/downloads.html);
 
