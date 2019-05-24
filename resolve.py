@@ -75,9 +75,9 @@ def resolve(genome, vcf_file, vcf_new, mei_annot_file, is_precise, vcf_folder, v
                 if "DEL" in sv:
                     for i in range(len(a)):
                         if i == 3:
-                            vcf_new.write("%s\t"%fa[start])
-                        elif i == 4:
                             vcf_new.write("%s\t"%fa[start:end])
+                        elif i == 4:
+                            vcf_new.write("%s\t"%fa[start])
                         else:
                             vcf_new.write("%s\t"%a[i])
                     vcf_new.write("\n")
@@ -142,7 +142,6 @@ def resolve(genome, vcf_file, vcf_new, mei_annot_file, is_precise, vcf_folder, v
                         else:
                             vcf_new.write("%s\t"%a[i])
                     vcf_new.write("\n")
-
                 else:
                     vcf_new.write("%s"%line)
         vcf_new.close()

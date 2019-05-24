@@ -4,6 +4,7 @@ def flt(vcf_file, output):
     vcf, comments = util.readVcf(vcf_file)
     for line in vcf:
         if line[0] == "#":
+            output.write("%s"%line)
             continue
         a = line.split()
         tmp = a[9].split(':')
